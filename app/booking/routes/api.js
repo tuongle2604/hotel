@@ -15,31 +15,38 @@ module.exports = function(app){
         var arr = [datein,datein,dateout,dateout,location];
 
         qr.getReservedHotel(arr).then(function(results){
-          res.json(results);
+          var data = {status:"success",results:results};
+          res.json(data);
         }).catch(function(err){
-          res.json('error');
+          var data = {status:"error"};
+          res.json(data);
         })
 
       }else{
         var arr = [location,datein,datein,dateout,dateout,location];
 
         qr.getEmptyHotel(arr).then(function(results){
-          res.json(results);
+          var data = {status:"success",results:results};
+          res.json(data);
         }).catch(function(err){
-          res.json('error');
+          var data = {status:"error"};
+          res.json(data);
         })
       }
 
     }else if(location){
 
         qr.getLocationHotel(location).then(function(results){
-          res.json(results);
+          var data = {status:"success",results:results};
+          res.json(data);
         }).catch(function(err){
-          res.json('error');
+          var data = {status:"error"};
+          res.json(data);
         })
 
     }else{
-      res.json('error');
+      var data = {status:"error"};
+      res.json(data);
     }
   })
 
