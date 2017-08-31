@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../include/head %>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+  <% include ../include/header %>
+
+  <% include ../include/aside %>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        ACCOUNT
+      </h1>
+    </section>
+
+    <section class="content">
+
+      <div class="box">
+
+        <% if ( message.length > 0) { %>
+          <div class="alert "><%=message%></div>
+        <% } %>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <% if( role== 'root'){
+                %> <th>hotel</th> <%
+              } %>
+
+              <th>name</th>
+              <th>role</th>
+              <th>email</th>
+              <th style="padding-left:20px;"><a href="/admin/account/add" style="color:blue"><i class="fa fa-plus" aria-hidden="true"></i>  ADD </th></a>
+
+            </tr>
+            </thead>
+            <tbody>
+
+              <% for(var i=0;i<data.length;i++){
+                %>
+                  <tr>
+                  <%  if(role == 'root'){
+                        %> <td><%=data[i].hotel%></td> <%
+                      }
+                  %>
+                  <td><%=data[i].name%></td>
+                  <td><%=data[i].role%></td>
+                  <td><%=data[i].email%></td>
+                  <td class="center" style="padding:20px;">
+                    <%  if(data[i].role!=role){
+                    %>
+                      <div style="padding:10px;" >
+                        <a href="/admin/account/edit/<%=data[i].id%>" stlye="margin:10px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                      </div>
+                      <div style="padding:10px;">
+                        <a href="/admin/account/delete/<%=data[i].id%>" stlye="margin:10px;"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+                      </div>
+                    <%
+                  } %>
+
+                </td>
+                 </tr>
+                <%
+              }
+              %>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+
+        <div class="row">
+          <div class="col-sm-5">
+            </div>
+            <div class="col-sm-7">
+              <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                <ul class="pagination" style="float:right;margin-right:10px;">
+                <%
+                  page=parseInt(page)
+                  if(page>1){
+
+
+                    %>
+                    <li class="" id="">
+                      <a href="/admin/account?page=<%=page-1%>" >Previous</a>
+                    </li>
+                    <%
+                  }
+
+
+                      for(var i=1;i<count+1;i++){
+                        %>
+                        <li class="paginate_button ">
+                          <a href="/admin/account?page=<%=i%>"><%=i%></a>
+                        </li>
+                        <%
+                      }
+
+
+                    if(page!=count){
+                      %>
+                      <li class="" id="">
+                        <a href="/admin/account?page=<%=page+1%>" >Next</a>
+                      </li>
+                      <%
+                    }
+                  %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+
+
+    </section>
+
+
+
+
+  </div>
+
+</div>
+<% include ../include/foot %>
+</body>
+</html>

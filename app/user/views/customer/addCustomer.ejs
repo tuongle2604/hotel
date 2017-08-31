@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../include/head %>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+  <% include ../include/header %>
+
+  <% include ../include/aside %>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Add customer
+      </h1>
+    </section>
+
+    <section class="content">
+
+      <% if ( message.length > 0) { %>
+        <div class="alert "><%=message%></div>
+      <% } %>
+
+
+      <div class="box box-primary" style="width:500px;">
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form  action="/admin/customer/add" method="post" enctype="application/x-www-form-urlencoded">
+          <div class="box-body" style="margin:10px;">
+
+            <div class="form-group" >
+              <label style="margin-right:22px;">name </label>
+               <input type="text" name="name" value="">
+            </div>
+
+            <div class="form-group" >
+              <label style="margin-right:18px;">phone </label>
+               <input type="text" name="phone" value="">
+            </div>
+
+            <div class="form-group" >
+              <label style="margin-right:24px;">email </label>
+               <input type="text" name="email" value="">
+            </div>
+
+            <div class="form-group" >
+              <label style="margin-right:15px;">gender </label>
+               <input type="text" name="gender" value="">
+            </div>
+
+            <div class="form-group" >
+              <label style="margin-right:10px;"> country </label>
+               <input type="text" name="country" value="">
+            </div>
+
+
+          </div>
+          <!-- /.box-body -->
+
+          <div class="box-footer">
+            <button type="submit"  class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+
+
+
+
+    </section>
+  </div>
+
+</div>
+<% include ../include/foot %>
+</body>
+</html>

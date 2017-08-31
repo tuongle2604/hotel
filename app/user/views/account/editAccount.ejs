@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../include/head %>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+  <% include ../include/header %>
+
+  <% include ../include/aside %>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Edit Account
+      </h1>
+    </section>
+
+    <section class="content">
+
+      <% if ( message.length > 0) { %>
+        <div class="alert"><%=message%></div>
+      <% } %>
+
+      <div class="box box-primary" style="width:500px;">
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form  action="/admin/account/edit/<%=data.id%>" method="post" enctype="multipart/form-data">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address: <%=data.email%></label>
+            </div>
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">name</label>
+              <input name="name"  class="form-control"  value="<%=data.name%>">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input name="password" type="password" class="form-control" value="">
+            </div>
+            <div class="form-group">
+              <label>Role: <%=data.role%></label>
+              <select name="role" class="form-control">
+                <option>receptionist</option>
+                <option>hotel</option>
+                <% if(role=='root'){
+                    %>  <option>root</option> <%
+                } %>
+              </select>
+            </div>
+
+            <%
+              if(role=='root'){
+                %>
+                  <div class="form-group">
+                    <label>Hotel: <%=hotel%> </label>
+                    <select name="hotel" class="form-control">
+                      <%
+                          if(list.length>0){
+                            for(var i=0;i<list.length;i++){
+                              %>
+                              <option><%=list[i].id%>. <%=list[i].name%></option>
+                              <%
+                            }
+                          }
+                      %>
+                    </select>
+                  </div>
+                <%
+              }
+            %>
+
+            <div class="form-group">
+              <label >avatar </label>
+                <input id="image_file" type="file" name="file" value="">
+            </div>
+
+          </div>
+          <!-- /.box-body -->
+
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </form>
+      </div>
+
+    </section>
+  </div>
+
+</div>
+<% include ../include/foot %>
+</body>
+</html>

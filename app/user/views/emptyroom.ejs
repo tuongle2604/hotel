@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../include/head %>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+  <% include ../include/header %>
+
+  <% include ../include/aside %>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Room
+      </h1>
+    </section>
+
+    <section class="content">
+      <% if ( message.length > 0) { %>
+        <div class="alert "><%=message%></div>
+      <% } %>
+      <div class="" style="display:block;">
+        <form class="" action="/admin/emptyroom" method="post">
+
+
+          <div class="form-group" style="width:250px;float:left;">
+            <label>check in : </label>
+             <input type="date" name="checkin" style="margin:5px;padding:3px;">
+          </div>
+          <div class="form-group" style="width:250px;float:left;">
+            <label>check out : </label>
+             <input type="date" name="checkout" style="margin:5px;padding:3px;">
+          </div>
+          <div class="form-group" style="width:250px;float:left;">
+            <button type="submit" name=""  style="margin:5px;padding:3px;">Find</button>
+          </div>
+        </form>
+      </div>
+
+
+      <%
+        if(data){
+          if(data.length>0){
+          %>
+            <!-- /.box-header -->
+            <div class="box-body" >
+              <table id="example2" style="border:1px solid black;color:#0018d3;" class="table table-bordered table-hover" >
+                <thead>
+                <tr>
+                  <th style="border:1px solid black;">room_number</th>
+                  <th style="border:1px solid black;">capacity</th>
+                  <th style="border:1px solid black;">price</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0;i<data.length;i++){
+                    %>
+                      <tr>
+                      <td style="border:1px solid black;"><%=data[i].room_number%></td>
+                      <td style="border:1px solid black;"><%=data[i].capacity%></td>
+                      <td style="border:1px solid black;"><%=data[i].price%></td>
+
+                     </tr>
+                    <%
+                  }
+                  %>
+
+                </tbody>
+              </table>
+            </div>
+
+          <%
+        }else{
+            %>
+            <div style="margin:100px;" class="">
+              <div class="alert " style="margin:auto;">
+                <p style="margin:auto;width:250px;font-size:20px;">không tìm thấy dữ liệu</p>
+              </div>
+            </div>
+            <%
+        }
+      }
+      %>
+
+
+    </section>
+
+
+
+
+  </div>
+
+</div>
+<% include ../include/foot %>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../include/head %>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+  <% include ../include/header %>
+
+  <% include ../include/aside %>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        find customer
+      </h1>
+    </section>
+
+    <section class="content">
+      <div class="" style="width:800px;">
+        <form class="" action="/admin/customer/find" method="post" >
+          <input style="width:350px;margin:5px;padding:5px;font-size:18px;" type="text" name="key" placeholder=" enter name or phone number" value="">
+          <button style="margin:5px;padding:5px;font-size:18px;" type="submit">find</button>
+        </form>
+      </div>
+
+      <%
+        if(data){
+          if(data.length>0){
+            %>
+              <!-- /.box-header -->
+              <div class="box-body" >
+                <table id="example2" style="border:1px solid black;color:#0018d3;" class="table table-bordered table-hover" >
+                  <thead>
+                  <tr>
+                    <th style="border:1px solid black;">name</th>
+                    <th style="border:1px solid black;">phone</th>
+                    <th style="border:1px solid black;">email</th>
+                    <th style="border:1px solid black;">gender</th>
+                    <th style="border:1px solid black;">country</th>
+                    <th style="border:1px solid black;">status</th>
+                    <th style="border:1px solid black;">đặt phòng </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <% for(var i=0;i<data.length;i++){
+                      %>
+                        <tr>
+                        <td style="border:1px solid black;"><%=data[i].name%></td>
+                        <td style="border:1px solid black;"><%=data[i].phone%></td>
+                        <td style="border:1px solid black;"><%=data[i].email%></td>
+                        <td style="border:1px solid black;"><%=data[i].gender%></td>
+                        <td style="border:1px solid black;"><%=data[i].country%></td>
+                        <td style="border:1px solid black;"><%=data[i].status%></td>
+                        <td style="border:1px solid black;">
+                          <a href="/admin/reservation/create/<%=data[i].id%>">
+                          <button style="color:red;" type="button" name="button">đặt phòng</button>
+                        </a>
+                        </td>
+                       </tr>
+                      <%
+                    }
+                    %>
+
+                  </tbody>
+                </table>
+              </div>
+
+            <%
+          }else{
+              %>
+              <div style="margin:100px;" class="">
+                <div class="alert " style="margin:auto;">
+                  <p style="margin:auto;width:250px;font-size:20px;">không tìm thấy khách hàng</p>
+                </div>
+                <div class="" style="margin:auto;width:150px;">
+                  <a href="/admin/customer/add"><button style="font-size:18px;color:red;" type="button" name="button">Add customer</button></a>
+                </div>
+
+              </div>
+              <%
+          }
+        }
+     %>
+
+
+    </section>
+  </div>
+
+</div>
+<% include ../include/foot %>
+</body>
+</html>

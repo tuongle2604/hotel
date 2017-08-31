@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../include/head %>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+  <% include ../include/header %>
+
+  <% include ../include/aside %>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        reservation
+      </h1>
+    </section>
+
+    <section class="content">
+      <% if ( message.length > 0) { %>
+        <div class="alert "><%=message%></div>
+      <% } %>
+      <div class="" style="display:block;">
+        <form class="" action="/admin/root/reservation" method="post">
+          <div class="form-group" style="width:300px;float:left;">
+            <label style="float:left;margin:10px;">Hotel: </label>
+            <select name="hotel" class="form-control" style="width:200px;">
+              <%
+                  if(list.length>0){
+                    for(var i=0;i<list.length;i++){
+                      %>
+                      <option><%=list[i].id%>. <%=list[i].name%></option>
+                      <%
+                    }
+                  }
+              %>
+            </select>
+          </div>
+          <div class="form-group" style="width:250px;float:left;">
+            <label>check in : </label>
+             <input type="date" name="checkin" style="margin:5px;padding:3px;">
+          </div>
+          <div class="form-group" style="width:250px;float:left;">
+            <label>check out : </label>
+             <input type="date" name="checkout" style="margin:5px;padding:3px;">
+          </div>
+          <div class="form-group" style="width:250px;float:left;">
+            <button type="submit" name=""  style="margin:5px;padding:3px;">Find</button>
+          </div>
+        </form>
+      </div>
+
+
+      <%
+        if(data){
+          if(data.length>0){
+          %>
+            <!-- /.box-header -->
+            <div class="box-body" >
+              <table id="example2" style="border:1px solid black;color:#0018d3;" class="table table-bordered table-hover" >
+                <thead>
+                <tr>
+                  <th style="border:1px solid black;">customer</th>
+                  <th style="border:1px solid black;">phone</th>
+                  <th style="border:1px solid black;">check in</th>
+                  <th style="border:1px solid black;">check out</th>
+                  <th style="border:1px solid black;">status</th>
+                  <th style="border:1px solid black;">confirmed </th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0;i<data.length;i++){
+                    var checkIn = data[i].date_in.toLocaleDateString();
+                    var checkOut = data[i].date_out.toLocaleDateString();
+                    %>
+                      <tr>
+                      <td style="border:1px solid black;"><%=data[i].name%></td>
+                      <td style="border:1px solid black;"><%=data[i].phone%></td>
+                      <td style="border:1px solid black;"><%=checkIn%></td>
+                      <td style="border:1px solid black;"><%=checkOut%></td>
+                      <td style="border:1px solid black;"><%=data[i].status%></td>
+                      <td style="border:1px solid black;"><a href="#"><button style="color:red;" type="button" name="button">check in</button></a></td>
+                     </tr>
+                    <%
+                  }
+                  %>
+
+                </tbody>
+              </table>
+            </div>
+
+          <%
+        }else{
+            %>
+            <div style="margin:100px;" class="">
+              <div class="alert " style="margin:auto;">
+                <p style="margin:auto;width:250px;font-size:20px;">không tìm thấy dữ liệu</p>
+              </div>
+            </div>
+            <%
+        }
+      }
+      %>
+
+
+    </section>
+
+
+
+
+  </div>
+
+</div>
+<% include ../include/foot %>
+</body>
+</html>

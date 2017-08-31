@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../include//head %>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+  <% include ../include/header %>
+
+  <% include ../include/aside %>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        Create reservation
+      </h1>
+    </section>
+
+    <section class="content">
+      <% if ( message.length > 0) { %>
+        <div class="alert "><%=message%></div>
+      <% } %>
+      <div class="box box-primary" style="width:500px;">
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form  action="/admin/reservation/create" method="post" enctype="application/x-www-form-urlencoded">
+          <div class="box-body">
+
+            <%
+              if(role=='root'){
+                %>
+                  <div class="form-group" style="width:300px;float:left;">
+                    <label style="float:left;margin:10px;">Hotel</label>
+                    <select name="hotel" class="form-control" style="width:200px;">
+                      <%
+                          if(list && list.length >0){
+                            for(var i=0;i<list.length;i++){
+                              %>
+                              <option><%=list[i].id%>. <%=list[i].name%></option>
+                              <%
+                            }
+                          }
+                      %>
+                    </select>
+                  </div>
+                <%
+              }
+            %>
+
+            <div class="form-group" style="width:300px;" >
+              <label style="float:left;margin:10px;">room</label>
+              <input name="room"  class="form-control" placeholder="room" style="width:200px;">
+            </div>
+
+            <div class="form-group" >
+              <label>check in : </label>
+               <input type="date" name="checkin" style="margin:5px;padding:3px;">
+            </div>
+
+            <div class="form-group" style="width:250px;float:left;">
+              <label>check out : </label>
+               <input type="date" name="checkout" style="margin:5px;padding:3px;">
+            </div>
+
+          </div>
+          <!-- /.box-body -->
+
+          <div class="box-footer">
+            <button type="submit" name='id' value="<%=id%>" class="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+
+    </section>
+  </div>
+
+</div>
+<% include ../include/foot %>
+</body>
+</html>
