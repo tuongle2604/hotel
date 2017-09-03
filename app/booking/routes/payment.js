@@ -5,15 +5,6 @@ var router = express.Router();
 const Nexmo = require('nexmo');
 var nexmoConfig = require('../../../config/nexmo')
 
- var nodemailer = require('nodemailer');
- var transporter = nodemailer.createTransport({
-   service: 'gmail',
-   auth: {
-     user: 'tuongle2604@gmail.com',
-     pass: 'Tl0914217050'
-   }
- });
-
 
 const nexmo = new Nexmo(nexmoConfig);
 
